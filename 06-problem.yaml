@@ -1,0 +1,38 @@
+# Find out why this service is not working
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: problem-6
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccount: nginx
+      containers:
+      - name: nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: problem-6
+spec:
+  selector:
+    app: problem-6
+  ports:
+  - port: 80
+    targetPort: 80
+

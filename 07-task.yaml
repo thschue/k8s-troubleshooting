@@ -1,0 +1,1 @@
+# Print out a list of all currently running container images in the namespace default and print it to /tmp/images.txt

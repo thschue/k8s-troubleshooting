@@ -1,0 +1,19 @@
+## Attach a sidecar to this pod which writes the output of the file /tmp/out.log to stdout
+## Hint: emptyDir
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task-05
+  labels:
+    name: task-05
+spec:
+  containers:
+  - name: task-05
+    image: busybox
+    command: 
+    - /bin/sh
+    - -c
+    args:
+    - while true; do date > /tmp/out.log; sleep 20; done
+    resources: {}
